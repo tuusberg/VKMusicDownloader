@@ -7,10 +7,6 @@ from vkappauth import VKAppAuth
 import json
 
 
-def remove_invalid_chars(filename):
-    return "".join(i for i in filename if i not in r'\/:*?"<>|')
-
-
 def authenticate(email, password, app_id, scope):
     return VKAppAuth().auth(email, password, app_id, scope)
 
@@ -53,23 +49,32 @@ def download_audios(folder, audio_list):
            #    raise
 
 
+def remove_invalid_chars(filename):
+    return "".join(i for i in filename if i not in r'\/:*?"<>|')
+
 # credentials
 email    = ""
 password = ""
 app_id   = "4856994"
 scope    = "audio"
 
-print "Authentication"
-access_data = authenticate(email, password, app_id, scope)
-print "Done!"
+if __name__ == '__main__':
 
-print 'Connecting to VKAPI'
-audio_list = get_audio_list(access_data)
-print "Done!"
+    with file.open('settings.txt'):
+        for line in file:
+            
+    
+    print "Authentication"
+    access_data = authenticate(email, password, app_id, scope)
+    print "Done!"
 
-print "Downloading"
-folder = "d:\VKAudioDownloader"
-download_audios(folder, audio_list)
-print "Done!"
+    print 'Connecting to VKAPI'
+    audio_list = get_audio_list(access_data)
+    print "Done!"
+
+    print "Downloading"
+    folder = "d:\VKAudioDownloader"
+    download_audios(folder, audio_list)
+    print "Done!"
 
 
