@@ -13,9 +13,9 @@ def authenticate(email, password, app_id, scope):
 
 
 def get_audio_list(access_data):
-    url = "https://api.vkontakte.ru/method/" \
-          "audio.get?uid=" + access_data['user_id'] + \
-          "&access_token=" + access_data['access_token']
+    url = 'https://api.vkontakte.ru/method/' \
+          'audio.get?uid=' + access_data['user_id'] + \
+          '&access_token=' + access_data['access_token']
 
     response = requests.get(url)
     return json.loads(response.text)['response']
@@ -32,7 +32,7 @@ def download_audios(folder, audio_list):
         title = song['title']
         url = song['url']
 
-        print("Downloading %d / %d: %s - %s" % (index + 1, number, artist, title))
+        print('Downloading %d / %d: %s - %s' % (index + 1, number, artist, title))
 
         filename = "%s - %s.mp3" % (song['artist'], song['title'])
         filename = remove_invalid_chars(filename)
@@ -54,23 +54,17 @@ def remove_invalid_chars(filename):
 
 
 def main():
-    print
-    "Authentication..."
+    print 'Authentication...'
     access_data = authenticate(settings.email, settings.password, settings.app_id, settings.scope)
-    print
-    'Done!'
+    print 'Done!'
 
-    print
-    'Connecting to VKAPI...'
+    print 'Connecting to VKAPI...'
     audio_list = get_audio_list(access_data)
-    print
-    "Done!"
+    print 'Done!'
 
-    print
-    'Downloading...'
+    print 'Downloading...'
     download_audios(settings.output_folder, audio_list)
-    print
-    'Done!'
+    print 'Done!'
 
 
 if __name__ == '__main__':
