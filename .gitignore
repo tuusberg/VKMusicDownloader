@@ -1,2 +1,12 @@
+# PyCharm stuff
 /.idea/
+
+# bytecode
 *.pyc
+
+# virtualenv stuff
+/bin
+/include
+/lib
+
+.Python
